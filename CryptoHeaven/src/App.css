@@ -1,0 +1,24 @@
+/* Target the images directly within the swiper-slide */
+.swiper-slide img {
+  display: block; /* Important: Removes any extra space below the image */
+  width: 100%; /* Make the image take 100% of the slide's width */
+  height: 40%; /* Make the image take 100% of the slide's height */
+
+  /* --- This is the key property for oversized images --- */
+  object-fit: cover;
+  /*
+    Alternative options for object-fit:
+    - object-fit: contain;  // Image will scale down to fit entirely, showing empty space (letterboxing)
+    - object-fit: fill;     // Image will stretch/squash to fill, ignoring aspect ratio (rarely desired)
+    - object-fit: scale-down; // Image will be 'none' or 'contain' depending on which would result in a smaller concrete object size
+    - object-fit: none;     // Image will retain its original size, and parts will be clipped if too big
+  */
+}
+
+/* If your SwiperSlide contains divs that wrap the images (like in the previous example) */
+/* You need to ensure those wrapper divs also take 100% height */
+.swiper-slide > div {
+  width: 100%;
+  height: 40%;
+  /* If these divs have padding, that will reduce the effective space for the image */
+}
