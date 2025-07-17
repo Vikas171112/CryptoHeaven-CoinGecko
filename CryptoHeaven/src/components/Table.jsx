@@ -1,7 +1,7 @@
 // src/components/Table.jsx
 import React from "react";
 
-const Table = ({ columns = [], data = [] }) => {
+const Table = ({ columns = [], data = [], onRowClick }) => {
   return (
     <div className="overflow-x-auto rounded shadow">
       <table className="min-w-full divide-y divide-gray-200 bg-white">
@@ -19,7 +19,11 @@ const Table = ({ columns = [], data = [] }) => {
         </thead>
         <tbody className="divide-y divide-gray-200">
           {data.map((row, idx) => (
-            <tr key={row.id ?? idx} className="hover:bg-gray-50">
+            <tr
+              key={row.id ?? idx}
+              className="hover:bg-gray-50"
+              onClick={() => onRowClick && onRowClick(row)}
+            >
               {columns.map((col) => (
                 <td
                   key={col.key}
