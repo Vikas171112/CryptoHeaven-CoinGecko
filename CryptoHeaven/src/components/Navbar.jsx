@@ -53,7 +53,7 @@ function Navbar() {
         <ul className="menu menu-horizontal px-1">
           <li>
             <details>
-              <summary>{currency}</summary>
+              <summary>{currency.toUpperCase()}</summary>
               <ul className="p-2">
                 <li onClick={() => setCurrency("inr")}>
                   <a>INR</a>

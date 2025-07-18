@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 
 import HomePageView from "./HomePageView";
 import { useCurrencyContext } from "../../Hooks/CoontextsWrapper/useCurrencyContext";
 import useFetchCoinData from "../../Hooks/useFetchCoinData";
 import useFetchTrendingCoinData from "../../Hooks/useFetchTrendingcoins";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 
 function HomePageContainer() {
-  const { coinData, isLoading, isError, error } = useFetchCoinData();
   const { currency } = useCurrencyContext();
   const { TrendingCoinData } = useFetchTrendingCoinData();
+  const [page, setPage] = useState(1);
+  const per_page = 10;
+
+  const { coinData, isLoading, isError, error } = useFetchCoinData(
+    page,
+    per_page
+  );
+
   const navigate = useNavigate();
 
   const trendingItems = (TrendingCoinData?.coins || []).map(({ item }) => ({
@@ -51,6 +58,9 @@ function HomePageContainer() {
       isError={isError}
       error={error}
       onRowClick={handleRowClick}
+      page={page} // PASS page
+      setPage={setPage} // PASS setPage
+      perPage={per_page}
     />
   );
 }

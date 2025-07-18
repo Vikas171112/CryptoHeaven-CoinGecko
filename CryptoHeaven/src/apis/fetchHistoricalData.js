@@ -1,9 +1,11 @@
+// src/apis/fetchHistoricalData.js
 import axiosInstance from "../cofigurations/axiosInstance";
 
-export async function fetchcoinData(currency, per_page = 10, page = 1) {
+// Correct endpoint!
+export async function fetchcoinHistoricalData(currency, days, id) {
   try {
     const response = await axiosInstance.get(
-      `/coins/markets/?vs_currency=${currency}&per_page=${per_page}&page=${page}`
+      `/coins/${id}/market_chart?vs_currency=${currency}&days=${days}`
     );
     return response.data;
   } catch (error) {

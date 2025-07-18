@@ -2,6 +2,7 @@
 import React from "react";
 import Cards from "../../components/Cards";
 import Table from "../../components/Table";
+import Button1 from "../../components/Buttons/Button1";
 
 const HomePageView = ({
   trendingItems = [],
@@ -12,6 +13,9 @@ const HomePageView = ({
   isError,
   error,
   onRowClick,
+  page,
+  setPage,
+  per_page = 10,
 }) => (
   <>
     <div className="flex flex-wrap gap-6 mb-8 justify-center">
@@ -23,6 +27,12 @@ const HomePageView = ({
       </div>
       <Cards cardTitle="Trending NFTs" items={nftItems.slice(0, 5)} />
     </div>
+    <div className="flex">
+      <Button1 title={"NFT"} />
+      <Button1 title={"Categories"} />
+      <Button1 title={"Exchanges"} />
+    </div>
+
     {isLoading ? (
       <div className="text-center py-8 text-gray-500">Loading...</div>
     ) : isError ? (
@@ -30,7 +40,30 @@ const HomePageView = ({
         Error: {error?.message || "Something went wrong!"}
       </div>
     ) : (
-      <Table columns={columns} data={coinData} onRowClick={onRowClick} />
+      <>
+        {" "}
+        <Table columns={columns} data={coinData} onRowClick={onRowClick} />
+        <div className="flex justify-center items-center gap-2 mt-4">
+          <button
+            onClick={() => setPage(page - 1)}
+            disabled={page === 1}
+            className="px-3 py-1 rounded bg-gray-200 disabled:opacity-50 text-black"
+          >
+            Prev
+          </button>
+          <span>
+            Page <b>{page}</b>
+          </span>
+          <button
+            onClick={() => setPage(page + 1)}
+            // You can disable Next when there is no more data, e.g. coinData.length < per_page
+            disabled={coinData.length < per_page}
+            className="px-3 py-1 rounded bg-gray-200 disabled:opacity-50 text-black"
+          >
+            Next
+          </button>
+        </div>
+      </>
     )}
   </>
 );
