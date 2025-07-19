@@ -20,7 +20,7 @@ function PriceChart({ prices }) {
         borderWidth: 1, // thicker line
         tension: 0.7, // smoothness, 0=straight, >0=smooth
         borderDash: [6, 6], // dashed line ([dash, gap])
-        fill: true, // no area fill
+        fill: false, // no area fill
         pointRadius: 0.5,
       },
     ],

@@ -1,5 +1,5 @@
-import React from "react";
-import { Line } from "react-chartjs-2";
+import React, { useRef } from "react";
+import { Line, getElementAtEvent } from "react-chartjs-2";
 import {
   CategoryScale,
   Chart,
@@ -21,12 +21,19 @@ Chart.register(
   Legend
 );
 
-const LineChart = ({ data, options }) => {
-  return (
-    <div>
-      <Line data={data} options={options} />
-    </div>
-  );
-};
+export default function LineChart({ data, options, onPointClick }) {
+  const chartRef = useRef();
 
-export default LineChart;
+  // Add click event handler:
+  const handleClick = (event) => {
+    const points = getElementAtEvent(chartRef.current, event);
+    if (points.length > 0) {
+      const idx = points[0].index;
+      if (onPointClick) onPointClick(idx); // pass only idx, parent can use it!
+    }
+  };
+
+  return (
+    <Line ref={chartRef} data={data} options={options} onClick={handleClick} />
+  );
+}

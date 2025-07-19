@@ -3,6 +3,7 @@ import React from "react";
 import Cards from "../../components/Cards";
 import Table from "../../components/Table";
 import Button1 from "../../components/Buttons/Button1";
+import CoinDetails from "../CoinDetailsPage/CoinDetails";
 
 const HomePageView = ({
   trendingItems = [],

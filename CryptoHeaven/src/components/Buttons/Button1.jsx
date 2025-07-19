@@ -1,6 +1,6 @@
 import React from "react";
 
-function Button1({ title }) {
+function Button1({ title, ...props }) {
   return (
     <div>
       <button
@@ -28,6 +28,7 @@ function Button1({ title }) {
     dark:focus:ring-amber-300
     cursor-pointer
   "
+        {...props}
       >
         {title}
       </button>
