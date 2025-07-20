@@ -47,6 +47,9 @@ function HomePageContainer() {
   function handleRowClick(row) {
     navigate(`/details/${row.id}`);
   }
+  function handleNavigate(key) {
+    navigate(`/${key}/list`);
+  }
 
   return (
     <HomePageView
@@ -61,6 +64,7 @@ function HomePageContainer() {
       page={page} // PASS page
       setPage={setPage} // PASS setPage
       perPage={per_page}
+      handleNavigate={handleNavigate}
     />
   );
 }

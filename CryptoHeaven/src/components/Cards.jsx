@@ -2,7 +2,7 @@ import React from "react";
 
 function Cards({ cardTitle, items = [] }) {
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center  ">
       <div className="w-full max-w-xs bg-white dark:bg-gray-800 rounded-xl shadow p-4 border border-gray-100 dark:border-gray-700">
         <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-3">
           {cardTitle}

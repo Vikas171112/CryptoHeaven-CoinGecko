@@ -4,6 +4,7 @@ import Cards from "../../components/Cards";
 import Table from "../../components/Table";
 import Button1 from "../../components/Buttons/Button1";
 import CoinDetails from "../CoinDetailsPage/CoinDetails";
+import NfTTables from "../../components/NfTTables";
 
 const HomePageView = ({
   trendingItems = [],
@@ -17,6 +18,7 @@ const HomePageView = ({
   page,
   setPage,
   per_page = 10,
+  handleNavigate,
 }) => (
   <>
     <div className="flex flex-wrap gap-6 mb-8 justify-center">
@@ -29,9 +31,13 @@ const HomePageView = ({
       <Cards cardTitle="Trending NFTs" items={nftItems.slice(0, 5)} />
     </div>
     <div className="flex">
-      <Button1 title={"NFT"} />
-      <Button1 title={"Categories"} />
-      <Button1 title={"Exchanges"} />
+      {["nft", "categories", "exchanges"].map((key) => (
+        <Button1
+          key={key}
+          title={key.charAt(0).toUpperCase() + key.slice(1)}
+          onClick={() => handleNavigate(key)}
+        />
+      ))}
     </div>
 
     {isLoading ? (
