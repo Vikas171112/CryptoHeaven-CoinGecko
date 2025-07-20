@@ -1,9 +1,9 @@
 import axiosInstance from "../cofigurations/axiosInstance";
 
-export async function fetchExchangeList(page, per_page) {
+export async function fetchExchangeByVolumeChart(id) {
   try {
     const response = await axiosInstance.get(
-      `/exchanges?page=${page}&per_page=${per_page}`
+      `/exchanges/${id}/volume_chart?days=1}`
     );
     return response.data;
   } catch (error) {

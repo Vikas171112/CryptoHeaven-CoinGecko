@@ -9,6 +9,7 @@ import NfTTables from "./components/NfTTables";
 import NftDetails from "./Pages/NftPages/NftDetails";
 import CategoryDetail from "./Pages/CategoryPages/CategoryDetail";
 import ExchangeList from "./Pages/ExchangePages/ExchangeList";
+import ExchangeDetails from "./Pages/ExchangePages/ExchangeDetails";
 
 function AppRoutes() {
   return (
@@ -19,7 +20,8 @@ function AppRoutes() {
       </Route>
       <Route path="nft/list" element={<NftDetails />} />
       <Route path="coin/category" element={<CategoryDetail />} />
-      <Route path="exchange/list" element={<ExchangeList />} />
+      <Route path="exchanges/list" element={<ExchangeList />} />
+      <Route path="exchanges/details/:id" element={<ExchangeDetails />} />
     </Routes>
   );
 }
