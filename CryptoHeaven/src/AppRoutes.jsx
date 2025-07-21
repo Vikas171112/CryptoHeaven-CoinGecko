@@ -10,6 +10,7 @@ import NftDetails from "./Pages/NftPages/NftDetails";
 import CategoryDetail from "./Pages/CategoryPages/CategoryDetail";
 import ExchangeList from "./Pages/ExchangePages/ExchangeList";
 import ExchangeDetails from "./Pages/ExchangePages/ExchangeDetails";
+import GlobalMarketPage from "./Pages/GlobalMarketData/GlobalMarketPage";
 
 function AppRoutes() {
   return (
@@ -19,9 +20,10 @@ function AppRoutes() {
         <Route path="details/:id" element={<CoinDetails />} />{" "}
       </Route>
       <Route path="nft/list" element={<NftDetails />} />
-      <Route path="coin/category" element={<CategoryDetail />} />
+      <Route path="categories/list" element={<CategoryDetail />} />
       <Route path="exchanges/list" element={<ExchangeList />} />
       <Route path="exchanges/details/:id" element={<ExchangeDetails />} />
+      <Route path="/globalmarket" element={<GlobalMarketPage />} />
     </Routes>
   );
 }

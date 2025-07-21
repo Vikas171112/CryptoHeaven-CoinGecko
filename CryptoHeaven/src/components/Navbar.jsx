@@ -65,7 +65,7 @@ function Navbar() {
             </details>
           </li>
           <li>
-            <a>Item 1</a>
+            <a>Global Market Data</a>
           </li>
 
           <li>
