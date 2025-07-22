@@ -24,12 +24,11 @@ Chart.register(
 export default function LineChart({ data, options, onPointClick }) {
   const chartRef = useRef();
 
-  // Add click event handler:
   const handleClick = (event) => {
     const points = getElementAtEvent(chartRef.current, event);
     if (points.length > 0) {
       const idx = points[0].index;
-      if (onPointClick) onPointClick(idx); // pass only idx, parent can use it!
+      if (onPointClick) onPointClick(idx);
     }
   };
 

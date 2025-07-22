@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function GraphSwitch({ value, onChange }) {
-  // keys must match API response: 'prices', 'market_caps', 'total_volumes'
   const options = [
     { label: "Price", value: "prices" },
     { label: "Market Cap", value: "market_caps" },

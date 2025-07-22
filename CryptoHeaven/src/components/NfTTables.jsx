@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Table from "./Table";
 import useFetchNftlist from "../Hooks/useFetchNfts";
+import Loader from "./Loader";
 
 function NfTTables() {
   const [page, setPage] = useState(1);
@@ -16,8 +17,6 @@ function NfTTables() {
     page,
     per_page
   );
-  console.log(nftdata);
-
   if (isError) {
     return (
       <div className="text-red-600 text-center py-6">
@@ -27,9 +26,7 @@ function NfTTables() {
     );
   }
   return isLoading ? (
-    <div>
-      <p>Loading ...</p>
-    </div>
+    <Loader />
   ) : (
     <div>
       <Table columns={columns} data={nftdata} />

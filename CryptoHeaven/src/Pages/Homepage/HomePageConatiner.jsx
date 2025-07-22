@@ -5,10 +5,16 @@ import { useCurrencyContext } from "../../Hooks/CoontextsWrapper/useCurrencyCont
 import useFetchCoinData from "../../Hooks/useFetchCoinData";
 import useFetchTrendingCoinData from "../../Hooks/useFetchTrendingcoins";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
-
+import Loader from "../../components/Loader";
 function HomePageContainer() {
   const { currency } = useCurrencyContext();
-  const { TrendingCoinData } = useFetchTrendingCoinData();
+  const {
+    TrendingCoinData,
+    isLoading: trendingDataLoading,
+    isSuccess: trendingDataSuccess,
+    isError: trendingDataError,
+  } = useFetchTrendingCoinData();
+
   const [page, setPage] = useState(1);
   const per_page = 10;
 
@@ -18,6 +24,20 @@ function HomePageContainer() {
   );
 
   const navigate = useNavigate();
+
+  const loading = isLoading || trendingDataLoading;
+
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (isError || trendingDataError) {
+    return (
+      <div className="text-center text-red-600 p-4">
+        Error loading data. Please try again.
+      </div>
+    );
+  }
 
   const trendingItems = (TrendingCoinData?.coins || []).map(({ item }) => ({
     label: item.symbol,
@@ -44,9 +64,11 @@ function HomePageContainer() {
     { header: "Rank", key: "market_cap_rank" },
     { header: "24h Change (%)", key: "price_change_percentage_24h" },
   ];
+
   function handleRowClick(row) {
     navigate(`/details/${row.id}`);
   }
+
   function handleNavigate(key) {
     navigate(`/${key}/list`);
   }
@@ -61,8 +83,8 @@ function HomePageContainer() {
       isError={isError}
       error={error}
       onRowClick={handleRowClick}
-      page={page} // PASS page
-      setPage={setPage} // PASS setPage
+      page={page}
+      setPage={setPage}
       perPage={per_page}
       handleNavigate={handleNavigate}
     />

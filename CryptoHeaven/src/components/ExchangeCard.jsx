@@ -18,7 +18,6 @@ function ExchangeCard({ exchange = {} }) {
 
   return (
     <div className="w-full max-w-md bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-gray-100 dark:border-gray-800 flex flex-col overflow-hidden">
-      {/* Header image + name */}
       <div className="flex flex-col items-center pt-8 pb-3 bg-gradient-to-b from-gray-50 dark:from-gray-800/70 to-white dark:to-gray-900">
         <img
           src={exchange.image}
@@ -29,7 +28,7 @@ function ExchangeCard({ exchange = {} }) {
           {exchange.name}
         </span>
       </div>
-      {/* Body */}
+
       <div className="px-7 py-5 flex-1">
         <h2 className="text-xl font-semibold mb-2 text-primary">
           Exchange Details

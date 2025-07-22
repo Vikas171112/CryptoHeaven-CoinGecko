@@ -49,7 +49,14 @@ function Navbar() {
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">CryptoHeaven</a>
+        <a
+          className="btn btn-ghost text-xl"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          CryptoHeaven
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">

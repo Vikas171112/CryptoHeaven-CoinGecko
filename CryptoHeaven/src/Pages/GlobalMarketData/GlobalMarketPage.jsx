@@ -1,13 +1,14 @@
 import React from "react";
 import Dashboard from "../../components/GlobalMarketData/DashBoard";
 import useFetchGlobalMarketData from "../../Hooks/useFetchGlobalMarketData";
+import Loader from "../../components/Loader";
 
 function GlobalMarketPage() {
   const { isLoading, isSuccess, error, isError, globalMarketData } =
     useFetchGlobalMarketData();
 
   if (isLoading) {
-    return <div className="text-center text-white mt-8">Loading...</div>;
+    return <Loader />;
   }
 
   if (isError) {

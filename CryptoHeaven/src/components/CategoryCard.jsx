@@ -1,17 +1,8 @@
 import React from "react";
 
-/**
- * Card for rendering a single CoinGecko category.
- * Props:
- *   - category: {
- *       id, name, market_cap, market_cap_change_24h,
- *       top_3_coins, volume_24h, updated_at, ...
- *     }
- */
 const CategoryCard = ({ category }) => {
   if (!category) return null;
 
-  // Safe formatting for numbers (with fallback)
   const formattedMarketCap =
     typeof category.market_cap === "number"
       ? new Intl.NumberFormat("en-US", {
@@ -32,7 +23,6 @@ const CategoryCard = ({ category }) => {
         }).format(category.volume_24h)
       : "-";
 
-  // 24h change: safe, colored, with fallback
   const hasChange = typeof category.market_cap_change_24h === "number";
   const changeColor = !hasChange
     ? "text-gray-400"
@@ -40,11 +30,9 @@ const CategoryCard = ({ category }) => {
     ? "text-green-600"
     : "text-red-600";
 
-  // Top 3 coin images (always array or undefined)
   const hasTopCoins =
     Array.isArray(category.top_3_coins) && category.top_3_coins.length > 0;
 
-  // Updated time
   let formattedTime = "-";
   if (category.updated_at) {
     try {

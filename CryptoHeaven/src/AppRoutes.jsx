@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import HomeLayout from "./Layouts/HomeLayout";
 import AppErrorBoundary from "./components/CustomErrorBoundary";
+import Loader from "./components/Loader";
 
 const HomePageContainer = lazy(() =>
   import("./Pages/Homepage/HomePageConatiner")
@@ -22,7 +23,7 @@ const GlobalMarketPage = lazy(() =>
 function AppRoutes() {
   return (
     <AppErrorBoundary>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<HomeLayout />}>
             <Route index element={<HomePageContainer />} />

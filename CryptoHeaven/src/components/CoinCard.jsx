@@ -3,11 +3,9 @@ import Button1 from "./Buttons/Button1";
 import Modal from "./Modals/Modal";
 
 export default function CoinCard({ coin = {} }) {
-  // 👇🏽 HOOKS MUST COME FIRST
   const [showAboutModal, setShowAboutModal] = useState(false);
   const [showNewsModal, setShowNewsModal] = useState(false);
 
-  // ⚠️ HOOKS ke baad ab yeh check karo!
   if (!coin || Object.keys(coin).length === 0) {
     return (
       <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg flex flex-col items-center justify-center min-h-[240px] max-w-[360px]">
@@ -57,7 +55,6 @@ export default function CoinCard({ coin = {} }) {
         )}
       </div>
 
-      {/* Quick actions (e.g., Add to Watchlist) */}
       <div className="mt-2 flex gap-2">
         <button
           className="px-4 py-1 rounded-full bg-amber-200 dark:bg-gray-700 text-blue-700 dark:text-amber-200 font-semibold text-sm shadow transition hover:bg-amber-300 dark:hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-blue-300 dark:focus:ring-amber-300"
@@ -67,7 +64,6 @@ export default function CoinCard({ coin = {} }) {
         </button>
       </div>
 
-      {/* Basic Info */}
       <div className="w-full mt-4 flex flex-col gap-2 text-sm text-gray-600 dark:text-gray-300">
         <div className="flex justify-between">
           <span>Market Cap</span>
@@ -108,7 +104,6 @@ export default function CoinCard({ coin = {} }) {
         <Button1 title="News" onClick={() => setShowNewsModal(true)} />
       </div>
 
-      {/* About Modal */}
       <Modal
         open={showAboutModal}
         onClose={() => setShowAboutModal(false)}
@@ -121,17 +116,14 @@ export default function CoinCard({ coin = {} }) {
             : "No description available."}
         </div>
       </Modal>
-      {/* News Modal */}
+
       <Modal
         open={showNewsModal}
         onClose={() => setShowNewsModal(false)}
         maxWidth="max-w-xl"
       >
         <div className="font-bold text-2xl mb-2">News</div>
-        <div>
-          {/* future: show news list here */}
-          Latest news coming soon...
-        </div>
+        <div>Latest news coming soon...</div>
       </Modal>
     </div>
   );

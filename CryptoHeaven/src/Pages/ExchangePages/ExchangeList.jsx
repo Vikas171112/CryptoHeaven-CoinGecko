@@ -4,6 +4,7 @@ import { useInView } from "react-intersection-observer";
 import useFetchExchangeList from "../../Hooks/useFetchExchangeList";
 import Table from "../../components/Table";
 import { useNavigate } from "react-router-dom";
+import Loader from "../../components/Loader";
 
 function ExchangeList() {
   const {
@@ -16,11 +17,9 @@ function ExchangeList() {
     isFetchingNextPage,
   } = useFetchExchangeList();
 
-  // Flat array of all exchanges loaded so far
   const exchangeData = data ? data.pages.flat() : [];
   const navigate = useNavigate();
 
-  // Sentinel for infinite scroll
   const { ref, inView } = useInView();
 
   React.useEffect(() => {
@@ -29,7 +28,16 @@ function ExchangeList() {
     }
   }, [inView, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
-  // Table columns - adjust as per actual data
+  if (isLoading) {
+    return <Loader />;
+  }
+  if (isError) {
+    return (
+      <div className="text-center text-red-500 mt-8">
+        "Something went wrong!"
+      </div>
+    );
+  }
   const columns = [
     { header: "Name", key: "name" },
     { header: "Year", key: "year_established" },

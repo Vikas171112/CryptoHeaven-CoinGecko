@@ -1,12 +1,12 @@
 import React from "react";
 import CategoryCard from "../../components/CategoryCard";
 import useFetchCategoryData from "../../Hooks/usefetchCategory";
+import Loader from "../../components/Loader";
 
 function CategoryDetail() {
   const { categoryData, isError, isLoading } = useFetchCategoryData();
-  console.log(categoryData);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loader />;
   if (isError) return <div>Error loading: </div>;
 
   if (!Array.isArray(categoryData) || categoryData.length === 0) {
