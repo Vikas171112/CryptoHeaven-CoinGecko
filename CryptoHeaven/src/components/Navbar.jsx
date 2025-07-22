@@ -1,8 +1,10 @@
 import React from "react";
 import { useCurrencyContext } from "../Hooks/CoontextsWrapper/useCurrencyContext";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
   const { currency, setCurrency } = useCurrencyContext();
+  const navigate = useNavigate();
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start">
@@ -64,7 +66,7 @@ function Navbar() {
               </ul>
             </details>
           </li>
-          <li>
+          <li onClick={() => navigate("/globalmarket")}>
             <a>Global Market Data</a>
           </li>
 

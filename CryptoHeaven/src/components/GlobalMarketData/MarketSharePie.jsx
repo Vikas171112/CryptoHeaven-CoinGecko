@@ -20,7 +20,6 @@ const COLORS = [
 ];
 
 export default function MarketSharePie({ data }) {
-  // data = { btc: 50.4, eth: 14.9, ... }
   const pieData = Object.entries(data).map(([key, val]) => ({
     name: key.toUpperCase(),
     value: Number(val),

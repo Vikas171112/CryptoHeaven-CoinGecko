@@ -1,30 +1,42 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import HomeLayout from "./Layouts/HomeLayout";
-import Table from "./components/Table";
-import HomePageContainer from "./Pages/Homepage/HomePageConatiner";
-import CoinDetailsPage from "./Pages/CoinDetailsPage/CoinDetailsPage";
-import CoinDetails from "./Pages/CoinDetailsPage/CoinDetails";
-import NfTTables from "./components/NfTTables";
-import NftDetails from "./Pages/NftPages/NftDetails";
-import CategoryDetail from "./Pages/CategoryPages/CategoryDetail";
-import ExchangeList from "./Pages/ExchangePages/ExchangeList";
-import ExchangeDetails from "./Pages/ExchangePages/ExchangeDetails";
-import GlobalMarketPage from "./Pages/GlobalMarketData/GlobalMarketPage";
+import AppErrorBoundary from "./components/CustomErrorBoundary";
+
+const HomePageContainer = lazy(() =>
+  import("./Pages/Homepage/HomePageConatiner")
+);
+const CoinDetails = lazy(() => import("./Pages/CoinDetailsPage/CoinDetails"));
+const NftDetails = lazy(() => import("./Pages/NftPages/NftDetails"));
+const CategoryDetail = lazy(() =>
+  import("./Pages/CategoryPages/CategoryDetail")
+);
+const ExchangeList = lazy(() => import("./Pages/ExchangePages/ExchangeList"));
+const ExchangeDetails = lazy(() =>
+  import("./Pages/ExchangePages/ExchangeDetails")
+);
+const GlobalMarketPage = lazy(() =>
+  import("./Pages/GlobalMarketData/GlobalMarketPage")
+);
 
 function AppRoutes() {
   return (
-    <Routes>
-      <Route path="/" element={<HomeLayout />}>
-        <Route index element={<HomePageContainer />} />
-        <Route path="details/:id" element={<CoinDetails />} />{" "}
-      </Route>
-      <Route path="nft/list" element={<NftDetails />} />
-      <Route path="categories/list" element={<CategoryDetail />} />
-      <Route path="exchanges/list" element={<ExchangeList />} />
-      <Route path="exchanges/details/:id" element={<ExchangeDetails />} />
-      <Route path="/globalmarket" element={<GlobalMarketPage />} />
-    </Routes>
+    <AppErrorBoundary>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<HomeLayout />}>
+            <Route index element={<HomePageContainer />} />
+            <Route path="details/:id" element={<CoinDetails />} />
+            <Route path="globalmarket" element={<GlobalMarketPage />} />{" "}
+          </Route>
+          <Route path="nft/list" element={<NftDetails />} />
+          <Route path="categories/list" element={<CategoryDetail />} />
+          <Route path="exchanges/list" element={<ExchangeList />} />
+          <Route path="exchanges/details/:id" element={<ExchangeDetails />} />
+          <Route path="globalmarket" element={<GlobalMarketPage />} />
+        </Routes>
+      </Suspense>
+    </AppErrorBoundary>
   );
 }
 
