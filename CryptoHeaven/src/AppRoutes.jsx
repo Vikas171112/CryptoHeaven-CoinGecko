@@ -33,7 +33,6 @@ function AppRoutes() {
           <Route path="categories/list" element={<CategoryDetail />} />
           <Route path="exchanges/list" element={<ExchangeList />} />
           <Route path="exchanges/details/:id" element={<ExchangeDetails />} />
-          <Route path="globalmarket" element={<GlobalMarketPage />} />
         </Routes>
       </Suspense>
     </AppErrorBoundary>
