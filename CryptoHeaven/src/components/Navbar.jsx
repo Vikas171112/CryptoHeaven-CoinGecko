@@ -1,9 +1,11 @@
 import React from "react";
 import { useCurrencyContext } from "../Hooks/CoontextsWrapper/useCurrencyContext";
 import { useNavigate } from "react-router-dom";
+import { uselogInModalContext } from "../Hooks/CoontextsWrapper/useLoginModal";
 
 function Navbar() {
   const { currency, setCurrency } = useCurrencyContext();
+  const { openLoginModal } = uselogInModalContext();
   const navigate = useNavigate();
   return (
     <div className="navbar bg-base-100 shadow-sm">
@@ -30,9 +32,9 @@ function Navbar() {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
-            <li>
+            {/* <li>
               <a>Item 1</a>
-            </li>
+            </li> */}
             <li>
               <a>Parent</a>
               <ul className="p-2">
@@ -83,7 +85,15 @@ function Navbar() {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        <a
+          className="btn"
+          onClick={() => {
+            console.log("Clicked Login");
+            openLoginModal();
+          }}
+        >
+          Login
+        </a>
       </div>
     </div>
   );

@@ -7,19 +7,18 @@ import Loader from "../../components/Loader";
 
 function ExchangeDetails() {
   const { id } = useParams();
-  const { Exchanges, isError, isLoading,);
-   } = useFetchExchangeDetails(id);
+  const { Exchanges, isError, isLoading } = useFetchExchangeDetails(id);
 
   if (isLoading) {
     return <Loader />;
   }
-   if (isError) {
-     return (
-       <div className="text-center text-red-500 mt-8">
-          "Something went wrong!"
-       </div>
-     );
-   }
+  if (isError) {
+    return (
+      <div className="text-center text-red-500 mt-8">
+        "Something went wrong!"
+      </div>
+    );
+  }
   return (
     <div className="flex flex-col md:flex-row gap-8 p-2 md:p-6">
       <div className="w-full md:w-1/3">
