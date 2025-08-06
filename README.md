@@ -1,3 +1,7 @@
+[Live Demo](https://crypto-heaven-coin-gecko.vercel.app/)
+
+
+
 # CryptoHeaven-CoinGecko
 ## Features
 - Live cryptocurrency price updates with pagination
