@@ -9,6 +9,9 @@
 - Detailed pages for coins, exchanges, categories, and global market metrics
 - Responsive and intuitive UI with error handling and loading states
 - Optimized with React lazy loading and context hooks
+- Pagination
+- Infinite Scrolling
+- Charts and Graphs for Historical Data
 
 
 ## Technology Stack
